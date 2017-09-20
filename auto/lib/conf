@@ -15,8 +15,7 @@ You can either disable the module by using --without-http_rewrite_module
 option or you have to enable the PCRE support.
 
 END
-        exit 1
-    fi
+    exit 1
 fi
 
 
