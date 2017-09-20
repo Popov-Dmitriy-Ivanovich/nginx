@@ -2,7 +2,6 @@
 # Copyright (C) Igor Sysoev
 # Copyright (C) Nginx, Inc.
 
-
 if [ $PCRE != NONE ]; then
     CORE_INCS="$CORE_INCS $PCRE"
 
@@ -77,7 +76,7 @@ if [ $PCRE != NONE ]; then
             if [ "$NGX_PLATFORM" = win32 ]; then
                 have=PCRE_STATIC . auto/have
             fi
-
+			
             CORE_DEPS="$CORE_DEPS $PCRE/pcre.h"
             LINK_DEPS="$LINK_DEPS $PCRE/.libs/libpcre.a"
             CORE_LIBS="$CORE_LIBS $PCRE/.libs/libpcre.a"
@@ -106,6 +105,13 @@ else
         ngx_feature_test="pcre *re;
                           re = pcre_compile(NULL, 0, NULL, 0, NULL);
                           if (re == NULL) return 1"
+
+	feature_dir="$PWD/lib/$NGX_SYSTEM/$NGX_MACHINE/pcre"
+	if [ -d "$feature_dir" ]; then
+             ngx_feature="PCRE library in $feature_dir"	
+	     ngx_feature_path="$feature_dir/include"
+             ngx_feature_libs="-L$feature_dir/lib $ngx_feature_libs"
+	fi
         . auto/feature
 
         if [ $ngx_found = no ]; then
@@ -187,7 +193,7 @@ else
             fi
         fi
     fi
-
+	
     if [ $PCRE != YES ]; then
 cat << END
 
