@@ -123,7 +123,7 @@ extern char **environ;
 // because cross-built autotest cannot be run on host platform
 
 #if (NGX_CROSSBUILD)
-#ifdef __arm__
+//#ifdef __arm__
 #define NGX_PTR_SIZE            4
 #define NGX_SIZE_T_LEN          sizeof("-2147483648") - 1
 #define NGX_MAX_SIZE_T_VALUE    2147483647
@@ -134,9 +134,9 @@ extern char **environ;
 #define NGX_MAX_OFF_T_VALUE     2147483647
 #define NGX_SIG_ATOMIC_T_SIZE   4
 #define NGX_HAVE_LITTLE_ENDIAN  1
-#else
-#error "Unknown cross-platform"
-#endif	/* __arm __ */
+//#else
+//#error "Unknown cross-platform"
+//#endif	/* __arm __ */
 #endif	/* NGX_CROSSBUILD */
 
 #endif /* _NGX_LINUX_CONFIG_H_INCLUDED_ */
