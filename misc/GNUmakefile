@@ -1,14 +1,15 @@
 
 VER =		$(shell grep 'define NGINX_VERSION' src/core/nginx.h	\
 			| sed -e 's/^.*"\(.*\)".*/\1/')
+DIR = $(shell pwd)
 NGINX =		nginx-$(VER)
 TEMP =		tmp
 
 CC =		cl
 OBJS =		objs.msvc8
 PCRE =		pcre-8.39
-
-
+ZLIB =		zlib-1.2.11
+OPENSSL = openssl-1.0.2
 release: export
 
 	mv $(TEMP)/$(NGINX)/auto/configure $(TEMP)/$(NGINX)
@@ -48,7 +49,6 @@ win32:
 	./auto/configure						\
 		--with-cc=$(CC)						\
 		--builddir=$(OBJS)					\
-		--with-debug						\
 		--prefix= 						\
 		--conf-path=conf/nginx.conf				\
 		--pid-path=logs/nginx.pid				\
@@ -61,8 +61,8 @@ win32:
 		--http-scgi-temp-path=temp/scgi_temp			\
 		--http-uwsgi-temp-path=temp/uwsgi_temp			\
 		--with-cc-opt=-DFD_SETSIZE=1024				\
-		--with-pcre=$(OBJS)/lib/$(PCRE)				\
-		--with-zlib=$(OBJS)/lib/$(ZLIB)				\
+		--with-pcre=src-lib/$(PCRE)				\
+		--with-zlib=src-lib/$(ZLIB)				\
 		--with-select_module					\
 		--with-http_realip_module				\
 		--with-http_addition_module				\
@@ -79,12 +79,13 @@ win32:
 		--with-http_slice_module				\
 		--with-mail						\
 		--with-stream						\
-		--with-openssl=$(OBJS)/lib/$(OPENSSL)			\
+		--with-openssl=src-lib/$(OPENSSL)			\
 		--with-openssl-opt=no-asm				\
 		--with-http_ssl_module					\
 		--with-mail_ssl_module					\
-		--with-stream_ssl_module
-
+		--with-stream_ssl_module \
+		--with-http_v2_module \
+		--add-module=modules/nginx-let-module 
 
 zip: export
 	rm -f $(NGINX).zip
