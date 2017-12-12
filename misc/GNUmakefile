@@ -7,9 +7,10 @@ TEMP =		tmp
 
 CC =		cl
 OBJS =		objs.msvc8
+OPENSSL =	openssl-1.0.2m
 PCRE =		pcre-8.39
 ZLIB =		zlib-1.2.11
-OPENSSL = openssl-1.0.2
+
 release: export
 
 	mv $(TEMP)/$(NGINX)/auto/configure $(TEMP)/$(NGINX)
