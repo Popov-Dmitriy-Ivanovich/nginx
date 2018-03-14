@@ -106,7 +106,7 @@ else
                           re = pcre_compile(NULL, 0, NULL, 0, NULL);
                           if (re == NULL) return 1"
 
-	feature_dir="$PWD/lib/$NGX_SYSTEM/$NGX_MACHINE/pcre"
+	feature_dir="$PWD/lib/$NGX_SYSTEM/$NGX_MACHINE"
 	if [ -d "$feature_dir" ]; then
              ngx_feature="PCRE library in $feature_dir"	
 	     ngx_feature_path="$feature_dir/include"
