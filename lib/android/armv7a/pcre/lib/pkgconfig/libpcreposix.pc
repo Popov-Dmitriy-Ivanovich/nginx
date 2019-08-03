@@ -1,0 +1,13 @@
+# Package Information for pkg-config
+
+prefix=/e/Workspace/nginx/src-lib/pcre-8.39/../lib/android/armv7a/pcre
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libpcreposix
+Description: PCREPosix - Posix compatible interface to libpcre
+Version: 8.39
+Libs: -L${libdir} -lpcreposix
+Cflags: -I${includedir} 
+Requires.private: libpcre
