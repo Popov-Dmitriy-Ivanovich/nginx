@@ -197,10 +197,11 @@ typedef struct {
     ngx_table_elt_t                  *if_range;
 
     ngx_table_elt_t                  *transfer_encoding;
+    ngx_table_elt_t                  *te;
     ngx_table_elt_t                  *expect;
     ngx_table_elt_t                  *upgrade;
 
-#if (NGX_HTTP_GZIP)
+#if (NGX_HTTP_GZIP || NGX_HTTP_HEADERS)
     ngx_table_elt_t                  *accept_encoding;
     ngx_table_elt_t                  *via;
 #endif
@@ -279,6 +280,7 @@ typedef struct {
     ngx_uint_t                        content_type_hash;
 
     ngx_array_t                       cache_control;
+    ngx_array_t                       link;
 
     off_t                             content_length_n;
     off_t                             content_offset;
@@ -410,6 +412,7 @@ struct ngx_http_request_s {
 
     ngx_str_t                         method_name;
     ngx_str_t                         http_protocol;
+    ngx_str_t                         schema;
 
     ngx_chain_t                      *out;
     ngx_http_request_t               *main;
@@ -496,6 +499,10 @@ struct ngx_http_request_s {
     unsigned                          gzip_vary:1;
 #endif
 
+#if (NGX_PCRE)
+    unsigned                          realloc_captures:1;
+#endif
+
     unsigned                          proxy:1;
     unsigned                          bypass_cache:1;
     unsigned                          no_cache:1;
@@ -507,6 +514,9 @@ struct ngx_http_request_s {
      */
     unsigned                          limit_conn_set:1;
     unsigned                          limit_req_set:1;
+
+    unsigned                          limit_rate_set:1;
+    unsigned                          limit_rate_after_set:1;
 
 #if 0
     unsigned                          cacheable:1;

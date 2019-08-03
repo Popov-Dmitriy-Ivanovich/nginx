@@ -7,9 +7,9 @@ TEMP =		tmp
 
 CC =		cl
 OBJS =		objs.msvc8
-OPENSSL =	openssl-1.0.2m
-PCRE =		pcre-8.39
+OPENSSL =	openssl-1.1.1c
 ZLIB =		zlib-1.2.11
+PCRE =		pcre-8.43
 
 release: export
 
@@ -62,9 +62,9 @@ win32:
 		--http-scgi-temp-path=temp/scgi_temp			\
 		--http-uwsgi-temp-path=temp/uwsgi_temp			\
 		--with-cc-opt=-DFD_SETSIZE=1024				\
-		--with-pcre=src-lib/$(PCRE)				\
-		--with-zlib=src-lib/$(ZLIB)				\
-		--with-select_module					\
+		--with-pcre=$(OBJS)/lib/$(PCRE)				\
+		--with-zlib=$(OBJS)/lib/$(ZLIB)				\
+		--with-http_v2_module					\
 		--with-http_realip_module				\
 		--with-http_addition_module				\
 		--with-http_sub_module					\
@@ -80,8 +80,8 @@ win32:
 		--with-http_slice_module				\
 		--with-mail						\
 		--with-stream						\
-		--with-openssl=src-lib/$(OPENSSL)			\
-		--with-openssl-opt=no-asm				\
+		--with-openssl=$(OBJS)/lib/$(OPENSSL)			\
+		--with-openssl-opt="no-asm no-tests -D_WIN32_WINNT=0x0501" \
 		--with-http_ssl_module					\
 		--with-mail_ssl_module					\
 		--with-stream_ssl_module \
