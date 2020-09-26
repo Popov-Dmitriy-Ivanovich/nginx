@@ -77,7 +77,7 @@ case "$NGX_PLATFORM" in
         CC_AUX_FLAGS="$CC_AUX_FLAGS -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64"
     ;;
     Neutrino:*)
-        # QNX(shka)
+        # QNX
         # Actually QNX is not *nix. but posix is supported
         if [ "$NGX_CROSSBUILD" = yes ]; then
             have=NGX_CROSSBUILD . auto/have_headers
@@ -88,7 +88,7 @@ case "$NGX_PLATFORM" in
         CORE_SRCS="$UNIX_SRCS"
     ;;
     QNX:*)
-        # QNX(shka)
+        # QNX
         # Actually QNX is not *nix. but posix is supported
         if [ "$NGX_CROSSBUILD" = yes ]; then
             have=NGX_CROSSBUILD . auto/have_headers
