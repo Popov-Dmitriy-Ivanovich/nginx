@@ -34,12 +34,6 @@ if test -z "$NGX_PLATFORM"; then
 
     NGX_PLATFORM="$NGX_SYSTEM:$NGX_RELEASE:$NGX_MACHINE";
 
-    case "$NGX_SYSTEM" in
-        MINGW32_* | MINGW64_* | MSYS_*)
-            NGX_PLATFORM=win32
-        ;;
-    esac
-
 else
     echo "building for $NGX_PLATFORM"
     
@@ -48,6 +42,12 @@ else
     NGX_SYSTEM_VERSION=$(echo $NGX_PLATFORM | cut -d: -f2)
     NGX_MACHINE=$(echo $NGX_PLATFORM | cut -d: -f3)
 fi
+
+case "$NGX_SYSTEM" in
+    MINGW32_* | MINGW64_* | MSYS_* | Windows*)
+        NGX_PLATFORM=win32
+    ;;
+esac
 
 . auto/cc/conf
 

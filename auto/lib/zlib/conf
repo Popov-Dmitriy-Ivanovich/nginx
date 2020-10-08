@@ -2,6 +2,10 @@
 # Copyright (C) Igor Sysoev
 # Copyright (C) Nginx, Inc.
 
+if [ $CONAN = YES ]; then
+    have=NGX_ZLIB . auto/have
+    return 0
+fi
 
 if [ $ZLIB != NONE ]; then
     CORE_INCS="$CORE_INCS $ZLIB"

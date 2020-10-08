@@ -2,6 +2,12 @@
 # Copyright (C) Igor Sysoev
 # Copyright (C) Nginx, Inc.
 
+if [ $CONAN = YES ]; then
+    have=NGX_PCRE . auto/have
+    have=PCRE_STATIC . auto/have
+    return 0
+fi
+
 if [ $PCRE != NONE ]; then
     CORE_INCS="$CORE_INCS $PCRE"
 

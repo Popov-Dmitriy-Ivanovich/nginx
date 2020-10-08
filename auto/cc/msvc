@@ -91,11 +91,13 @@ CFLAGS="$CFLAGS -nologo"
 # the link flags
 CORE_LINK="$CORE_LINK -link -verbose:lib"
 
-# link with libcmt.lib, multithreaded
-LIBC="-MT"
-# link with msvcrt.dll
-# however, MSVC Toolkit 2003 has no MSVCRT.LIB
-#LIBC="-MD"
+if [ $CONAN != YES ]; then
+    # link with libcmt.lib, multithreaded
+    LIBC="-MT"
+    # link with msvcrt.dll
+    # however, MSVC Toolkit 2003 has no MSVCRT.LIB
+    #LIBC="-MD"
+fi
 
 CFLAGS="$CFLAGS $LIBC"
 

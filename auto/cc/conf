@@ -76,70 +76,70 @@ if test -n "$CFLAGS"; then
 
     esac
 
-else
-
-    case $NGX_CC_NAME in
-        gcc)
-            # gcc 2.7.2.3, 2.8.1, 2.95.4, egcs-1.1.2
-            #     3.0.4, 3.1.1, 3.2.3, 3.3.2, 3.3.3, 3.3.4, 3.4.0, 3.4.2
-            #     4.0.0, 4.0.1, 4.1.0
-
-            . auto/cc/gcc
-        ;;
-
-        clang)
-            # Clang C compiler
-
-            . auto/cc/clang
-        ;;
-
-        icc)
-            # Intel C++ compiler 7.1, 8.0, 8.1
-
-            . auto/cc/icc
-        ;;
-
-        sunc)
-            # Sun C 5.7 Patch 117837-04 2005/05/11
-
-            . auto/cc/sunc
-        ;;
-
-        ccc)
-            # Compaq C V6.5-207
-
-            . auto/cc/ccc
-        ;;
-
-        acc)
-            # aCC: HP ANSI C++ B3910B A.03.55.02
-
-            . auto/cc/acc
-        ;;
-
-        msvc*)
-            # MSVC++ 6.0 SP2, MSVC++ Toolkit 2003
-
-            . auto/cc/msvc
-        ;;
-
-        owc)
-            # Open Watcom C 1.0, 1.2
-
-            . auto/cc/owc
-        ;;
-
-        bcc)
-            # Borland C++ 5.5
-
-            . auto/cc/bcc
-        ;;
-
-    esac
-
-    CC_TEST_FLAGS="$CC_TEST_FLAGS $NGX_CC_OPT"
-
 fi
+
+case $NGX_CC_NAME in
+    gcc)
+        # gcc 2.7.2.3, 2.8.1, 2.95.4, egcs-1.1.2
+        #     3.0.4, 3.1.1, 3.2.3, 3.3.2, 3.3.3, 3.3.4, 3.4.0, 3.4.2
+        #     4.0.0, 4.0.1, 4.1.0
+
+        . auto/cc/gcc
+    ;;
+
+    clang)
+        # Clang C compiler
+
+        . auto/cc/clang
+    ;;
+
+    icc)
+        # Intel C++ compiler 7.1, 8.0, 8.1
+
+        . auto/cc/icc
+    ;;
+
+    sunc)
+        # Sun C 5.7 Patch 117837-04 2005/05/11
+
+        . auto/cc/sunc
+    ;;
+
+    ccc)
+        # Compaq C V6.5-207
+
+        . auto/cc/ccc
+    ;;
+
+    acc)
+        # aCC: HP ANSI C++ B3910B A.03.55.02
+
+        . auto/cc/acc
+    ;;
+
+    msvc*)
+        # MSVC++ 6.0 SP2, MSVC++ Toolkit 2003
+
+        . auto/cc/msvc
+    ;;
+
+    owc)
+        # Open Watcom C 1.0, 1.2
+
+        . auto/cc/owc
+    ;;
+
+    bcc)
+        # Borland C++ 5.5
+
+        . auto/cc/bcc
+    ;;
+
+esac
+
+CC_TEST_FLAGS="$CC_TEST_FLAGS $NGX_CC_OPT"
+
+
 
 CFLAGS="$CFLAGS $NGX_CC_OPT"
 NGX_TEST_LD_OPT="$NGX_LD_OPT"

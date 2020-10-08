@@ -2,17 +2,18 @@
 # Copyright (C) Igor Sysoev
 # Copyright (C) Nginx, Inc.
 
+if [ $CONAN != YES ]; then
+    if [ $PCRE != NONE -a $PCRE != NO -a $PCRE != YES ]; then
+        . auto/lib/pcre/make
+    fi
 
-if [ $PCRE != NONE -a $PCRE != NO -a $PCRE != YES ]; then
-    . auto/lib/pcre/make
-fi
+    if [ $OPENSSL != NONE -a $OPENSSL != NO -a $OPENSSL != YES ]; then
+        . auto/lib/openssl/make
+    fi
 
-if [ $OPENSSL != NONE -a $OPENSSL != NO -a $OPENSSL != YES ]; then
-    . auto/lib/openssl/make
-fi
-
-if [ $ZLIB != NONE -a $ZLIB != NO -a $ZLIB != YES ]; then
-    . auto/lib/zlib/make
+    if [ $ZLIB != NONE -a $ZLIB != NO -a $ZLIB != YES ]; then
+        . auto/lib/zlib/make
+    fi
 fi
 
 if [ $NGX_LIBATOMIC != NO -a $NGX_LIBATOMIC != YES ]; then
