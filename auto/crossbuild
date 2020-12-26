@@ -1,0 +1,47 @@
+
+# Copyright (C) Igor Sysoev
+# Copyright (C) Nginx, Inc.
+
+NGX_CROSSBUILD=no
+echo $ngx_n "checking build type ...$ngx_c"
+
+cat << END >> $NGX_AUTOCONF_ERR
+
+----------------------------------------
+checking build type
+
+END
+
+
+cat << END > $NGX_AUTOTEST.c
+#include <stdio.h>
+int main(void) {
+    printf("Native");
+    return 0;
+}
+
+END
+
+ngx_test="$CC $CC_TEST_FLAGS $CC_AUX_FLAGS \
+          -o $NGX_AUTOTEST $NGX_AUTOTEST.c $NGX_LD_OPT $ngx_feature_libs"
+
+eval "$ngx_test >> $NGX_AUTOCONF_ERR 2>&1"
+
+if [ -x $NGX_AUTOTEST ]; then
+    if $NGX_AUTOTEST >/dev/null 2>&1; then
+        echo " Native"
+    else
+        NGX_CROSSBUILD=yes
+        have=NGX_CROSSBUILD . auto/have
+        echo " CrossPlatform"
+    fi
+
+    rm -rf $NGX_AUTOTEST*
+
+else
+    rm -rf $NGX_AUTOTEST*
+
+    echo
+    echo "$0: error: cannot detect build type"
+    exit 1
+fi

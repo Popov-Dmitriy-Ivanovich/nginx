@@ -79,9 +79,6 @@ case "$NGX_PLATFORM" in
     Neutrino:*)
         # QNX
         # Actually QNX is not *nix. but posix is supported
-        if [ "$NGX_CROSSBUILD" = yes ]; then
-            have=NGX_CROSSBUILD . auto/have_headers
-        fi
         have=NGX_QNX . auto/have_headers
         CORE_INCS="$UNIX_INCS"
         CORE_DEPS="$UNIX_DEPS $POSIX_DEPS"
@@ -90,18 +87,12 @@ case "$NGX_PLATFORM" in
     QNX:*)
         # QNX
         # Actually QNX is not *nix. but posix is supported
-        if [ "$NGX_CROSSBUILD" = yes ]; then
-            have=NGX_CROSSBUILD . auto/have_headers
-        fi
         have=NGX_QNX . auto/have_headers
         CORE_INCS="$UNIX_INCS"
         CORE_DEPS="$UNIX_DEPS $POSIX_DEPS"
         CORE_SRCS="$UNIX_SRCS"
     ;;
 	[Aa]ndroid:*)
-        if [ "$NGX_CROSSBUILD" = yes ]; then
-            have=NGX_CROSSBUILD . auto/have_headers
-        fi
         have=NGX_ANDROID . auto/have_headers
         CORE_INCS="$UNIX_INCS"
         CORE_DEPS="$UNIX_DEPS $POSIX_DEPS"

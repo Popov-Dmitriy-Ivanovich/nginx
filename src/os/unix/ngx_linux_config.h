@@ -88,6 +88,9 @@ extern ssize_t sendfile(int s, int fd, int32_t *offset, size_t size);
 #include <sys/epoll.h>
 #endif
 
+#if (NGX_HAVE_SYS_STATVFS_H)
+#include <sys/statvfs.h>        /* statvfs() */
+#endif
 
 #if (NGX_HAVE_SYS_EVENTFD_H)
 #include <sys/eventfd.h>
@@ -128,20 +131,29 @@ extern char **environ;
 // because cross-built autotest cannot be run on host platform
 
 #if (NGX_CROSSBUILD)
-//#ifdef __arm__
-#define NGX_PTR_SIZE            4
-#define NGX_SIZE_T_LEN          sizeof("-2147483648") - 1
-#define NGX_MAX_SIZE_T_VALUE    2147483647
-#define NGX_TIME_T_LEN          sizeof("-2147483648") - 1
-#define NGX_TIME_T_SIZE         4
-#define NGX_MAX_TIME_T_VALUE    2147483647
-#define NGX_OFF_T_LEN           sizeof("-2147483648") - 1
-#define NGX_MAX_OFF_T_VALUE     2147483647
-#define NGX_SIG_ATOMIC_T_SIZE   4
-#define NGX_HAVE_LITTLE_ENDIAN  1
-//#else
-//#error "Unknown cross-platform"
-//#endif	/* __arm __ */
-#endif	/* NGX_CROSSBUILD */
+	#if defined(__x86_64__) || defined(__aarch64__)
+		#define NGX_PTR_SIZE            8
+		#define NGX_SIZE_T_LEN          sizeof("-9223372036854775807") - 1
+		#define NGX_MAX_SIZE_T_VALUE    9223372036854775807ll
+		#define NGX_TIME_T_LEN          sizeof("-9223372036854775807") - 1
+		#define NGX_TIME_T_SIZE         8
+		#define NGX_MAX_TIME_T_VALUE    9223372036854775807ll
+		#define NGX_OFF_T_LEN           sizeof("-9223372036854775807") - 1
+		#define NGX_MAX_OFF_T_VALUE     9223372036854775807
+		#define NGX_SIG_ATOMIC_T_SIZE   8
+		#define NGX_HAVE_LITTLE_ENDIAN  1
+	#else
+		#define NGX_PTR_SIZE            4
+		#define NGX_SIZE_T_LEN          sizeof("-2147483648") - 1
+		#define NGX_MAX_SIZE_T_VALUE    2147483647
+		#define NGX_TIME_T_LEN          sizeof("-2147483648") - 1
+		#define NGX_TIME_T_SIZE         4
+		#define NGX_MAX_TIME_T_VALUE    2147483647
+		#define NGX_OFF_T_LEN           sizeof("-2147483648") - 1
+		#define NGX_MAX_OFF_T_VALUE     2147483647
+		#define NGX_SIG_ATOMIC_T_SIZE   4
+		#define NGX_HAVE_LITTLE_ENDIAN  1
+	#endif
+#endif 	/* NGX_CROSSBUILD */
 
 #endif /* _NGX_LINUX_CONFIG_H_INCLUDED_ */
