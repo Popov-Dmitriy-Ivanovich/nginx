@@ -149,7 +149,7 @@ USE_OPENSSL=NO
 OPENSSL=NONE
 
 CONAN=NO
-
+USE_LIBCRYPT=YES
 USE_ZLIB=NO
 ZLIB=NONE
 ZLIB_OPT=
@@ -281,8 +281,10 @@ $0: warning: the \"--with-ipv6\" option is deprecated"
                                          HTTP_UPSTREAM_RANDOM=NO    ;;
         --without-http_upstream_keepalive_module) HTTP_UPSTREAM_KEEPALIVE=NO ;;
         --without-http_upstream_zone_module) HTTP_UPSTREAM_ZONE=NO  ;;
-
-        --with-http_perl_module)         HTTP_PERL=YES              ;;
+		
+		--without-libcrypt) USE_LIBCRYPT=NO                         ;;  
+        
+		--with-http_perl_module)         HTTP_PERL=YES              ;;
         --with-http_perl_module=dynamic) HTTP_PERL=DYNAMIC          ;;
         --with-perl_modules_path=*)      NGX_PERL_MODULES="$value"  ;;
         --with-perl=*)                   NGX_PERL="$value"          ;;

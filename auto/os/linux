@@ -194,7 +194,7 @@ ngx_feature_test="struct __user_cap_data_struct    data;
 
 
 # crypt_r()
-
+if [ $USE_LIBCRYPT == YES ];
 ngx_feature="crypt_r()"
 ngx_feature_name="NGX_HAVE_GNU_CRYPT_R"
 ngx_feature_run=no
@@ -204,7 +204,7 @@ ngx_feature_libs=-lcrypt
 ngx_feature_test="struct crypt_data  cd;
                   crypt_r(\"key\", \"salt\", &cd);"
 . auto/feature
-
+fi
 
 ngx_include="sys/vfs.h";     . auto/include
 
