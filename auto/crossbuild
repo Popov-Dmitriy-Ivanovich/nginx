@@ -42,6 +42,12 @@ else
     rm -rf $NGX_AUTOTEST*
 
     echo
-    echo "$0: error: cannot detect build type"
+    echo "$0: error: cannot detect build type"   
+
+    echo "----------"    >> $NGX_AUTOCONF_ERR
+    cat $NGX_AUTOTEST.c  >> $NGX_AUTOCONF_ERR
+    echo "----------"    >> $NGX_AUTOCONF_ERR
+    echo $ngx_test       >> $NGX_AUTOCONF_ERR
+    echo "----------"    >> $NGX_AUTOCONF_ERR
     exit 1
 fi
