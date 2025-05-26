@@ -23,7 +23,7 @@ int main() {
     return 0;
 }
 
-
+END
 eval "$CC $cc_test_flags $ngx_lib_cflags \
      -o $NGX_AUTOTEST $NGX_AUTOTEST.c $ngx_libs \
      >> $NGX_ERR 2>&1"
