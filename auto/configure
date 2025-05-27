@@ -43,7 +43,7 @@ else
     NGX_MACHINE=$(echo $NGX_PLATFORM | cut -d: -f3)
 fi
 
-. auto/crossbuild
+
 case "$NGX_SYSTEM" in
     MINGW32_* | MINGW64_* | MSYS_* | Windows*)
         NGX_PLATFORM=win32
