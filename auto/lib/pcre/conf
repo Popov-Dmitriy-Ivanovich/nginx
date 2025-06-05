@@ -1,7 +1,7 @@
 
 # Copyright (C) Igor Sysoev
 # Copyright (C) Nginx, Inc.
-cat "CONAN = $CONAN"
+
 if [ $CONAN = YES ]; then
     have=NGX_PCRE . auto/have
     have=PCRE_STATIC . auto/have
