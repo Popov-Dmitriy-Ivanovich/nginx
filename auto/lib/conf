@@ -10,7 +10,7 @@ else
 
 cat << END
 
-$0: auto/lib/conf ($USE_PCRE $PCRE): error: the HTTP rewrite module requires the PCRE library.
+$0: error: the HTTP rewrite module requires the PCRE library.
 You can either disable the module by using --without-http_rewrite_module
 option or you have to enable the PCRE support.
 

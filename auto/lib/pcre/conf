@@ -1,7 +1,7 @@
 
 # Copyright (C) Igor Sysoev
 # Copyright (C) Nginx, Inc.
-
+cat "CONAN = $CONAN"
 if [ $CONAN = YES ]; then
     have=NGX_PCRE . auto/have
     have=PCRE_STATIC . auto/have
@@ -203,7 +203,7 @@ else
     if [ $PCRE != YES ]; then
 cat << END
 
-$0: auto/lib/pcre/conf error: the HTTP rewrite module requires the PCRE library.
+$0: error: the HTTP rewrite module requires the PCRE library.
 You can either disable the module by using --without-http_rewrite_module
 option, or install the PCRE library into the system, or build the PCRE library
 statically from the source with nginx by using --with-pcre=<path> option.
