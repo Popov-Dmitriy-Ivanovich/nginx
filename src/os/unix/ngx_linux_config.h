@@ -154,6 +154,17 @@ extern char **environ;
 		#define NGX_SIG_ATOMIC_T_SIZE   4
 		#define NGX_HAVE_LITTLE_ENDIAN  1
 	#endif
+#else
+	#define NGX_PTR_SIZE            8
+	#define NGX_SIZE_T_LEN          sizeof("-9223372036854775807") - 1
+	#define NGX_MAX_SIZE_T_VALUE    9223372036854775807ll
+	#define NGX_TIME_T_LEN          sizeof("-9223372036854775807") - 1
+	#define NGX_TIME_T_SIZE         8
+	#define NGX_MAX_TIME_T_VALUE    9223372036854775807ll
+	#define NGX_OFF_T_LEN           sizeof("-9223372036854775807") - 1
+	#define NGX_MAX_OFF_T_VALUE     9223372036854775807
+	#define NGX_SIG_ATOMIC_T_SIZE   8
+	#define NGX_HAVE_LITTLE_ENDIAN  1
 #endif 	/* NGX_CROSSBUILD */
 
 #endif /* _NGX_LINUX_CONFIG_H_INCLUDED_ */
